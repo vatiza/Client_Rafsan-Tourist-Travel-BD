@@ -1,5 +1,6 @@
+import UpComingEvents from "../../Components/UpComingEvents/UpComingEvents";
 import img from "../../assets/img/img3.png";
-import Chooseus from "./Chooseus/Chooseus";
+import Chooseus from "../Chooseus/Chooseus";
 const Home = () => {
   return (
     <div>
@@ -17,6 +18,9 @@ const Home = () => {
             Explore the world with what you love beautiful natural beauty.
           </p>
         </div>
+      </div>
+      <div>
+        <UpComingEvents></UpComingEvents>
       </div>
       <Chooseus></Chooseus>
     </div>
