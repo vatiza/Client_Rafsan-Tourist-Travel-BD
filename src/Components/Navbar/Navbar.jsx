@@ -1,21 +1,25 @@
+import { BsLuggageFill } from "react-icons/bs";
+import { HiMiniHome } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const navOptions = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <Link to="/">
+          <HiMiniHome /> Home
+        </Link>
       </li>
       <li>
-        <Link to="/">Packages</Link>
-      </li>
-      <li>
-        <Link to="/">Home</Link>
+        <Link to="/">
+          <BsLuggageFill />
+          Packages
+        </Link>
       </li>
     </>
   );
   return (
-    <div className="navbar bg-base-100">
+    <div className="sticky top-0 z-50 navbar bg-base-100">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -41,7 +45,7 @@ const Navbar = () => {
             {navOptions}
           </ul>
         </div>
-        <a className="font-avro text-3xl font-bold ">
+        <a className="font-avro text-3xl font-bold hidden lg:flex">
           Rafsan Tourist & Travel <span className="text-green-600">BD</span>
         </a>
       </div>
