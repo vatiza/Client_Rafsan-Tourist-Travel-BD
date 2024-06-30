@@ -5,7 +5,7 @@ import PackagesCard from "./PackagesCard";
 
 const Packages = () => {
   const [places] = usePlaceData();
-  console.log(places);
+
   return (
     <div>
       <Header
