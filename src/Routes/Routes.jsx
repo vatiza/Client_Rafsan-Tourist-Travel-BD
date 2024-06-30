@@ -3,6 +3,7 @@ import Main from "../Layouts/Main";
 import Home from "../Pages/Home/Home";
 import Packages from "../Pages/Packages/Packages";
 import Details from "../Pages/Packages/Details/Details";
+import Contactus from "../Pages/Contactus/Contactus";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
         element: <Details></Details>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/places/${params.id}`),
+      },
+      {
+        path: "/contactus",
+        element: <Contactus></Contactus>,
       },
     ],
   },

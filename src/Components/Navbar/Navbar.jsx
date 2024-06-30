@@ -1,5 +1,6 @@
 import { BsLuggageFill } from "react-icons/bs";
 import { HiMiniHome } from "react-icons/hi2";
+import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -15,6 +16,12 @@ const Navbar = () => {
         <Link to="/packages">
           <BsLuggageFill />
           Packages
+        </Link>
+      </li>
+      <li>
+        <Link to="/contactus">
+          <MdEmail   />
+          Contact Us
         </Link>
       </li>
     </>
