@@ -10,8 +10,9 @@ const Navbar = () => {
           <HiMiniHome /> Home
         </Link>
       </li>
+
       <li>
-        <Link to="/">
+        <Link to="/packages">
           <BsLuggageFill />
           Packages
         </Link>
