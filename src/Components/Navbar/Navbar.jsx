@@ -20,7 +20,7 @@ const Navbar = () => {
       </li>
       <li>
         <Link to="/contactus">
-          <MdEmail   />
+          <MdEmail />
           Contact Us
         </Link>
       </li>
@@ -62,7 +62,9 @@ const Navbar = () => {
         <div className="hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
-        <a className="btn">Button</a>
+        <Link to="/signup" className="btn">
+          Login
+        </Link>
       </div>
     </div>
   );

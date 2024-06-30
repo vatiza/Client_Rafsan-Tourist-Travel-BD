@@ -18,7 +18,7 @@ const Details = () => {
     include,
     not_include,
   } = details;
-  console.log(details);
+
   return (
     <div>
       <Header img={img} text={name} subText={division}></Header>
