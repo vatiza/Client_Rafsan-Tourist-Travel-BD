@@ -1,6 +1,9 @@
+import Footer from "../../Components/Footer/Footer";
+import Testimonial from "../../Components/Testimonial/Testimonial";
 import UpComingEvents from "../../Components/UpComingEvents/UpComingEvents";
 import img from "../../assets/img/img3.png";
 import Chooseus from "../Chooseus/Chooseus";
+import ExploreNewPlace from "./ExploreNewPlace/ExploreNewPlace";
 const Home = () => {
   return (
     <div>
@@ -20,9 +23,15 @@ const Home = () => {
         </div>
       </div>
       <div>
+        <h1 className="text-center my-5 font-bold text-2xl lg:text-5xl">
+          Up Coming Events
+        </h1>
         <UpComingEvents></UpComingEvents>
       </div>
+      <ExploreNewPlace></ExploreNewPlace>
       <Chooseus></Chooseus>
+      <Testimonial></Testimonial>
+      <Footer></Footer>
     </div>
   );
 };
