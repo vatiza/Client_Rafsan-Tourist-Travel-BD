@@ -8,7 +8,7 @@ const Navbar = () => {
   const { user, logoutUser } = useAuth();
   const handleLogout = () => {
     logoutUser()
-      .then((result) => {})
+      .then(() => {})
       .catch((e) => console.log(e));
   };
 
@@ -81,7 +81,7 @@ const Navbar = () => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                    src={user?.photoURL}
                   />
                 </div>
               </div>
@@ -91,12 +91,12 @@ const Navbar = () => {
               >
                 <li>
                   <a className="justify-between">
-                    Profile
+                    {user?.displayName}
                     <span className="badge">New</span>
                   </a>
                 </li>
                 <li>
-                  <a>Settings</a>
+                  <a>My Booking</a>
                 </li>
                 <li>
                   <a onClick={handleLogout}>Logout</a>

@@ -3,16 +3,40 @@ import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import signupBg from "../../assets/svg/undraw_undraw_undraw_undraw_sign_up_ln1s_-1-_s4bc_-1-_ee41_-1-_kf4d.svg";
 import useAuth from "../../Hook/useAuth";
 import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../Hook/useAxiosPublic";
+
+const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY;
+const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
+
 const Signup = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { createNewUser } = useAuth();
+  const { createNewUser, updateUserProfile } = useAuth();
+  const axiosPublic = useAxiosPublic();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const imageFile = { image: data.image[0] };
+    const res = await axiosPublic.post(img_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    if (res.data.success) {
+      const name = data.name;
+      const photoUrl = res.data.data.display_url;
+
+      createNewUser(data.email, data.password).then((result) => {
+        console.log(result.user);
+        updateUserProfile(name, photoUrl)
+          .then(() => {
+            console.log("profile updata");
+          })
+          .catch((e) => console.log(e.message));
+      });
+    }
   };
 
   return (
@@ -36,19 +60,41 @@ const Signup = () => {
                     placeholder="Name"
                     {...register("name", { required: true, maxLength: 80 })}
                   />
+                  {errors.name?.type === "required" && (
+                    <p className="text-red-600">Name is required</p>
+                  )}
                   <input
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                     type="email"
                     placeholder="Email"
                     {...register("email", { required: true })}
                   />
+                  {errors.email?.type === "required" && (
+                    <p className="text-red-600">Email is Required</p>
+                  )}
                   <input
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                     type="password"
                     placeholder="Password"
-                    {...register("password", { required: true })}
+                    {...register("password", {
+                      required: "Password is Required",
+                      minLength: {
+                        value: 8,
+                        message: "Password must be at least 8 characters long",
+                      },
+                    })}
+                  />{" "}
+                  {errors.password && (
+                    <p className="text-red-600">{errors.password.message}</p>
+                  )}
+                  <div className="label">
+                    <span className="label-text">Photo</span>
+                  </div>
+                  <input
+                    type="file"
+                    className="file-input file-input-bordered w-full max-w-xs text-white"
+                    {...register("image", { required: true })}
                   />
-
                   <div>
                     <p className="mt-6 text-xs text-gray-600 text-center">
                       I agree to terms
@@ -69,7 +115,7 @@ const Signup = () => {
                   </div>
                   <input
                     type="submit"
-                    className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                    className="mt-5 btn tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                     value="Sign up"
                   />
                 </div>
