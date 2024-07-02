@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import signupBg from "../../assets/svg/undraw_undraw_undraw_undraw_sign_up_ln1s_-1-_s4bc_-1-_ee41_-1-_kf4d.svg";
 import useAuth from "../../Hook/useAuth";
@@ -16,6 +16,7 @@ const Signup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
   const { createNewUser, updateUserProfile } = useAuth();
   const axiosPublic = useAxiosPublic();
   const [showPassword, setShowPassword] = useState(false);
@@ -35,7 +36,7 @@ const Signup = () => {
         console.log(result.user);
         updateUserProfile(name, photoUrl)
           .then(() => {
-            console.log("profile updata");
+            navigate("/");
           })
           .catch((e) => console.log(e.message));
       });
@@ -98,18 +99,7 @@ const Signup = () => {
                       {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </p>
                   </div>
-                  {/* <input
-                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                    type="password"
-                    placeholder="Password"
-                    {...register("password", {
-                      required: "Password is Required",
-                      minLength: {
-                        value: 8,
-                        message: "Password must be at least 8 characters long",
-                      },
-                    })}
-                  />{" "} */}
+                 
                   {errors.password && (
                     <p className="text-red-600">{errors.password.message}</p>
                   )}

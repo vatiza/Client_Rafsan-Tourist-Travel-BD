@@ -3,6 +3,8 @@ import SocialLogin from "../Components/SocialLogin/SocialLogin";
 import loginBg from "../assets/svg/undraw_secure_login_pdn4.svg";
 import { useForm } from "react-hook-form";
 import useAuth from "../Hook/useAuth";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useState } from "react";
 
 const Login = () => {
   const { loginWithEmailPass } = useAuth();
@@ -11,6 +13,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const onSubmit = (data) => {
     const email = data.email;
@@ -42,12 +45,30 @@ const Login = () => {
                     placeholder="Email"
                     {...register("email", { required: true })}
                   />
-                  <input
-                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                    type="password"
-                    placeholder="Password"
-                    {...register("password", { required: true })}
-                  />
+                  <div className="relative w-full">
+                    <input
+                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Password"
+                      {...register("password", {
+                        required: "Password is Required",
+                        minLength: {
+                          value: 8,
+                          message:
+                            "Password must be at least 8 characters long",
+                        },
+                      })}
+                    />
+                    <p
+                      className="absolute  inset-y-0 right-0 pr-4 pt-5 flex items-center text-sm leading-5 "
+                      onClick={() => {
+                        setShowPassword(!showPassword);
+                      }}
+                    >
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </p>
+                  </div>
+
                   <div>
                     <p className="mt-6 text-xs text-gray-600 text-center">
                       I agree to terms
