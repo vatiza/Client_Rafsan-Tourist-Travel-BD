@@ -1,3 +1,4 @@
+
 import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../Components/SocialLogin/SocialLogin";
 import loginBg from "../assets/svg/undraw_secure_login_pdn4.svg";
@@ -5,13 +6,14 @@ import { useForm } from "react-hook-form";
 import useAuth from "../Hook/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const { loginWithEmailPass } = useAuth();
   const {
     register,
     handleSubmit,
-    formState: { errors },
+   
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -20,6 +22,7 @@ const Login = () => {
     const pass = data.password;
     loginWithEmailPass(email, pass)
       .then((result) => {
+        toast.success("Successfully Login!");
         navigate("/");
       })
       .catch((e) => console.log(e.massage));
@@ -121,6 +124,7 @@ const Login = () => {
           ></div>
         </div>
       </div>
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import toast, { Toaster } from "react-hot-toast";
 
 const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
@@ -33,6 +34,7 @@ const Signup = () => {
       const photoUrl = res.data.data.display_url;
 
       createNewUser(data.email, data.password).then((result) => {
+        toast.success("Account Created Successful!");
         console.log(result.user);
         updateUserProfile(name, photoUrl)
           .then(() => {
@@ -99,7 +101,7 @@ const Signup = () => {
                       {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </p>
                   </div>
-                 
+
                   {errors.password && (
                     <p className="text-red-600">{errors.password.message}</p>
                   )}
@@ -163,6 +165,7 @@ const Signup = () => {
           ></div>
         </div>
       </div>
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };
