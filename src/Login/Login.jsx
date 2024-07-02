@@ -1,15 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../Components/SocialLogin/SocialLogin";
 import loginBg from "../assets/svg/undraw_secure_login_pdn4.svg";
 import { useForm } from "react-hook-form";
+import useAuth from "../Hook/useAuth";
 
 const Login = () => {
+  const { loginWithEmailPass } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {};
+  const navigate = useNavigate();
+  const onSubmit = (data) => {
+    const email = data.email;
+    const pass = data.password;
+    loginWithEmailPass(email, pass)
+      .then((result) => {
+        navigate("/");
+      })
+      .catch((e) => console.log(e.massage));
+  };
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
       <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">

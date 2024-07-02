@@ -1,13 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
 
 const SocialLogin = () => {
   const { googleLogin } = useAuth();
-
+  const navigate = useNavigate();
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate("/");
       })
       .catch((e) => {
         console.log(e.message);
@@ -40,7 +42,7 @@ const SocialLogin = () => {
             />
           </svg>
         </div>
-        <span className="ml-4">Sign Up with Google</span>
+        <span className="ml-4">Continue with Google</span>
       </button>
 
       <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline mt-5">
@@ -52,7 +54,7 @@ const SocialLogin = () => {
             />
           </svg>
         </div>
-        <span className="ml-4">Sign Up with GitHub</span>
+        <span className="ml-4">Continue with GitHub</span>
       </button>
     </div>
   );

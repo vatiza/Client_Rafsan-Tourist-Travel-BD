@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   updateProfile,
@@ -28,6 +29,10 @@ const AuthProvider = ({ children }) => {
   const logoutUser = () => {
     return signOut(auth);
   };
+  const loginWithEmailPass = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
   const updateUserProfile = (name, photoUrl) => {
     setLoading(true);
     return updateProfile(auth.currentUser, {
@@ -37,7 +42,7 @@ const AuthProvider = ({ children }) => {
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setLoading(true)
+      setLoading(true);
       setUser(currentUser);
     });
     return () => {
@@ -48,6 +53,7 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     loading,
     logoutUser,
+    loginWithEmailPass,
     createNewUser,
     googleLogin,
     updateUserProfile,
