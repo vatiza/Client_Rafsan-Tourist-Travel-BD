@@ -1,20 +1,17 @@
 import { Link } from "react-router-dom";
-import SocialLogin from "../../Components/SocialLogin/SocialLogin";
-import signupBg from "../../assets/svg/undraw_undraw_undraw_undraw_sign_up_ln1s_-1-_s4bc_-1-_ee41_-1-_kf4d.svg";
-import useAuth from "../../Hook/useAuth";
+import SocialLogin from "../Components/SocialLogin/SocialLogin";
+import loginBg from "../assets/svg/undraw_secure_login_pdn4.svg";
 import { useForm } from "react-hook-form";
-const Signup = () => {
+
+const Login = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { createNewUser } = useAuth();
-
   const onSubmit = (data) => {
-    console.log(data);
-  };
 
+  };
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
       <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
@@ -25,17 +22,11 @@ const Signup = () => {
             </h1>
           </div>
           <div className="mt-12 flex flex-col items-center">
-            <h1 className="text-2xl xl:text-3xl font-extrabold">Sign up</h1>
+            <h1 className="text-2xl xl:text-3xl font-extrabold">Login</h1>
 
             <div className="w-full flex-1 mt-8">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mx-auto max-w-xs">
-                  <input
-                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                    type="text"
-                    placeholder="Name"
-                    {...register("name", { required: true, maxLength: 80 })}
-                  />
                   <input
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                     type="email"
@@ -48,7 +39,6 @@ const Signup = () => {
                     placeholder="Password"
                     {...register("password", { required: true })}
                   />
-
                   <div>
                     <p className="mt-6 text-xs text-gray-600 text-center">
                       I agree to terms
@@ -70,15 +60,15 @@ const Signup = () => {
                   <input
                     type="submit"
                     className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
-                    value="Sign up"
+                    value="Login"
                   />
                 </div>
               </form>
               <div>
                 <p className="mt-6 text-xs text-gray-600 text-center">
-                  All ready You Have an Account?{" "}
-                  <Link className="btn btn-link" to="/login">
-                    Please Login
+                  Do not have an account?{" "}
+                  <Link className="btn btn-link" to="/signup">
+                    Create New Account
                   </Link>
                 </p>
               </div>
@@ -96,7 +86,7 @@ const Signup = () => {
           <div
             className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url(${signupBg})`,
+              backgroundImage: `url(${loginBg})`,
             }}
           ></div>
         </div>
@@ -105,4 +95,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;

@@ -5,6 +5,7 @@ import Packages from "../Pages/Packages/Packages";
 import Details from "../Pages/Packages/Details/Details";
 import Contactus from "../Pages/Contactus/Contactus";
 import Signup from "../Pages/Signup/Signup";
+import Login from "../Login/Login";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup></Signup>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
       },
     ],
   },
