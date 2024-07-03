@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import signupBg from "../../assets/svg/undraw_undraw_undraw_undraw_sign_up_ln1s_-1-_s4bc_-1-_ee41_-1-_kf4d.svg";
 import useAuth from "../../Hook/useAuth";
@@ -12,12 +12,15 @@ const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate();
+
   const { createNewUser, updateUserProfile } = useAuth();
   const axiosPublic = useAxiosPublic();
   const [showPassword, setShowPassword] = useState(false);
@@ -38,7 +41,17 @@ const Signup = () => {
         console.log(result.user);
         updateUserProfile(name, photoUrl)
           .then(() => {
-            navigate("/");
+            const userInfo = {
+              name: data.name,
+              email: data.email,
+            };
+            axiosPublic.post("/users", userInfo).then((res) => {
+              if (res.data.insertedId) {
+                console.log("user added to the database");
+                toast.success("Account Created Successful!");
+              }
+            });
+            navigate(from, { replace: true });
           })
           .catch((e) => console.log(e.message));
       });

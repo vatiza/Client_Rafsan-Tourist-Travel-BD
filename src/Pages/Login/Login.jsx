@@ -1,29 +1,27 @@
-
-import { Link, useNavigate } from "react-router-dom";
-import SocialLogin from "../Components/SocialLogin/SocialLogin";
-import loginBg from "../assets/svg/undraw_secure_login_pdn4.svg";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import loginBg from "../../assets/svg/undraw_secure_login_pdn4.svg";
 import { useForm } from "react-hook-form";
-import useAuth from "../Hook/useAuth";
+import useAuth from "../../Hook/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const { loginWithEmailPass } = useAuth();
-  const {
-    register,
-    handleSubmit,
-   
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const onSubmit = (data) => {
     const email = data.email;
     const pass = data.password;
     loginWithEmailPass(email, pass)
       .then((result) => {
         toast.success("Successfully Login!");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((e) => console.log(e.massage));
   };

@@ -1,10 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import SimpleParallax from "simple-parallax-js";
 import Header from "../../../Components/Header/Header";
 
 const Details = () => {
   const details = useLoaderData();
   const {
+    _id,
     name,
     img,
     price,
@@ -39,9 +40,12 @@ const Details = () => {
 
                 <div className="flex -mx-2 mb-4 mt-7">
                   <div className="w-1/2 px-2">
-                    <button className="w-full text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                    <Link
+                      to={`/bookconfirm/${_id}`}
+                      className="w-full text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                    >
                       Book Now
-                    </button>
+                    </Link>
                   </div>
                   <div className="w-1/2 px-2">
                     <button className="w-full text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">

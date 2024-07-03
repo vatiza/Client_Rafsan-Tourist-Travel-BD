@@ -1,14 +1,19 @@
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 const usePlaceData = () => {
-  const [places, setPlaces] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    fetch("http://localhost:5000/places")
-      .then((res) => res.json())
-      .then((data) => setPlaces(data));
-  }, []);
-  return [places, loading];
+  const {
+    refetch,
+    data: places = [],
+    isLoading: loading,
+  } = useQuery({
+    queryKey: ["places"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/places");
+      return res.json();
+    },
+  });
+  return [places, refetch, loading];
 };
 
 export default usePlaceData;
