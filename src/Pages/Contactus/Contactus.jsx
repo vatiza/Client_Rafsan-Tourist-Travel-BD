@@ -1,7 +1,33 @@
 import Header from "../../Components/Header/Header";
 import bgimg from "../../assets/img/img4.png";
-
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
+import toast, { Toaster } from "react-hot-toast";
 const Contactus = () => {
+  const form = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        `${import.meta.env.VITE_SERVICE_ID}`,
+        `${import.meta.env.VITE_TEMPLATE_ID}`,
+        form.current,
+        {
+          publicKey: `${import.meta.env.VITE_PUBLIC_KEY}`,
+        }
+      )
+      .then(
+        () => {
+          console.log("SUCCESS!");
+          toast.success("Message Send!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+          toast.error("Message Send Fail.");
+        }
+      );
+  };
   return (
     <div>
       <Header
@@ -128,7 +154,7 @@ const Contactus = () => {
                   <h2 className="mb-4 text-2xl font-bold dark:text-white">
                     Ready to Get Started?
                   </h2>
-                  <form id="contactForm">
+                  <form ref={form} onSubmit={sendEmail}>
                     <div className="mb-6">
                       <div className="mx-0 mb-1 sm:mb-4">
                         <div className="mx-0 mb-1 sm:mb-4">
@@ -145,7 +171,6 @@ const Contactus = () => {
                           <label className="pb-1 text-xs uppercase tracking-wider"></label>
                           <input
                             type="email"
-                            id="email"
                             placeholder="Your email address"
                             className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
                             name="email"
@@ -155,8 +180,7 @@ const Contactus = () => {
                       <div className="mx-0 mb-1 sm:mb-4">
                         <label className="pb-1 text-xs uppercase tracking-wider"></label>
                         <textarea
-                          id="textarea"
-                          name="textarea"
+                          name="message"
                           cols="30"
                           rows="5"
                           placeholder="Write your message..."
@@ -165,12 +189,11 @@ const Contactus = () => {
                       </div>
                     </div>
                     <div className="text-center">
-                      <button
+                      <input
                         type="submit"
-                        className="w-full bg-blue-800 text-white px-6 py-3 font-xl rounded-md sm:mb-0"
-                      >
-                        Send Message
-                      </button>
+                        className="w-full btn bg-blue-800 text-white px-6 py-3 font-xl rounded-md sm:mb-0"
+                        value="Send Message"
+                      />
                     </div>
                   </form>
                 </div>
@@ -179,6 +202,7 @@ const Contactus = () => {
           </div>
         </section>
       </div>
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };

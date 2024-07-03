@@ -1,13 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layouts/Main";
-import BookConfirm from "../Pages/BookConfirm/BookConfirm";
 import Contactus from "../Pages/Contactus/Contactus";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Details from "../Pages/Packages/Details/Details";
 import Packages from "../Pages/Packages/Packages";
 import Signup from "../Pages/Signup/Signup";
-import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -39,18 +37,6 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
-      },
-
-      {
-        path: "/bookconfirm/:id",
-        element: (
-          <PrivateRoutes>
-            {" "}
-            <BookConfirm></BookConfirm>
-          </PrivateRoutes>
-        ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/places/${params.id}`),
       },
     ],
   },
