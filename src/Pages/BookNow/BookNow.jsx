@@ -7,11 +7,14 @@ import useAuth from "../../Hook/useAuth";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { IoLocation } from "react-icons/io5";
+import useAxiosSecure from "../../Hook/useAxiosSecure";
+import toast, { Toaster } from "react-hot-toast";
 
 const BookNow = () => {
   const { user } = useAuth();
   const places = useLoaderData();
-  const { img, name, division, activity, price, days } = places;
+  const axiosSecure = useAxiosSecure();
+  const { _id, img, name, division, activity, price, days } = places;
   const [members, setMembers] = useState(1);
   const {
     register,
@@ -21,6 +24,29 @@ const BookNow = () => {
   const calculateTotalPrice = members * price;
   const onSubmit = async (data) => {
     console.log(data);
+    if (user && user?.email) {
+      const bookingInfo = {
+        placeId: _id,
+        cName: user?.displayName,
+        cEmail: user?.email,
+        cPhone: data.phone,
+        members: members,
+        cMessage: data.message,
+        placesName: name,
+        totalPrice: parseFloat(calculateTotalPrice),
+      };
+      axiosSecure
+        .post("/booking", bookingInfo)
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.insertedId) {
+            toast.success("Successfully Book Your Seat!");
+          }
+        })
+        .catch((e) => {
+          toast.error("Something Wrong! Please Try Again.");
+        });
+    }
   };
 
   return (
@@ -71,17 +97,19 @@ const BookNow = () => {
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="bg-gray-50 p-5 lg:p-11 lg:rounded-r-2xl rounded-2xl">
-                <h2 className="text-blue-700  text-4xl font-bold leading-10 mb-11">
+                <h2 className="text-blue-700  text-4xl font-bold leading-10 ">
                   Checkout ...
                 </h2>
+
                 <input
-                  {...register("name")}
+                  readOnly
                   type="text"
-                  className="w-full h-12 shadow-sm bg-transparent text-lg font-normal leading-7 rounded-lg border border-gray-200 focus:outline-none pl-4 mb-5"
+                  className="w-full  h-12 shadow-sm bg-transparent text-lg font-normal leading-7 rounded-lg border border-gray-200 focus:outline-none pl-4 mb-5"
                   placeholder={user?.displayName}
                 />
+
                 <input
-                  {...register("email")}
+                  readOnly
                   type="text"
                   className="w-full h-12 shadow-sm bg-transparent text-lg font-normal leading-7 rounded-lg border border-gray-200 focus:outline-none pl-4 mb-5"
                   placeholder={user?.email}
@@ -136,7 +164,7 @@ const BookNow = () => {
           </div>
         </div>
       </section>
-      <div className="mt-6 ">
+      <div className=" ">
         <h2 className="text-xl font-bold mb-2 text-center">Booking Summary</h2>
         <div className="p-4 border">
           <div className="flex items-center justify-between  ">
@@ -172,11 +200,11 @@ const BookNow = () => {
           <div className="flex items-center justify-between font-bold text-xl">
             <p>Total Price:</p>
             <div className="flex-grow border-b border-dashed border-gray-300 mr-2"></div>
-
             <span className="float-right">BDT : {calculateTotalPrice} TK</span>
           </div>
         </div>
       </div>
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };
