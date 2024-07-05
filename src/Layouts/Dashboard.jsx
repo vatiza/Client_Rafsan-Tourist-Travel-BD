@@ -12,8 +12,6 @@ const Dashboard = () => {
     <div className="drawer lg:drawer-open ">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
-        {/* Navbar */}
-
         <div className="navbar bg-base-300 w-full">
           <div className=" navbar-end flex-1">
             <a className="btn btn-ghost text-xl">Dashboard</a>
@@ -62,7 +60,11 @@ const Dashboard = () => {
                 </div>
               </div>
               <h1>{user.displayName}</h1>
-              {isAdmin ? <MdAdminPanelSettings className="text-2xl text-red-600" /> : <></>}
+              {isAdmin ? (
+                <MdAdminPanelSettings className="text-2xl text-red-600" />
+              ) : (
+                <></>
+              )}
             </div>
             <p className="ms-16 -mt-4">Email: {user?.email}</p>
           </div>

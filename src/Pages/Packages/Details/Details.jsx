@@ -41,7 +41,7 @@ const Details = () => {
                 <div className="flex -mx-2 mb-4 mt-7">
                   <div className="w-1/2 px-2">
                     <Link
-                      to={`/bookconfirm/${_id}`}
+                      to={`/booknow/${_id}`}
                       className="w-full text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
                     >
                       Book Now

@@ -11,6 +11,7 @@ import Signup from "../Pages/Signup/Signup";
 import AdminRoute from "./AdminRoute";
 import PrivateRoutes from "./PrivateRoutes";
 import MyBooking from "../Pages/Dashboard/MyBooking/MyBooking";
+import BookNow from "../Pages/BookNow/BookNow";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,12 @@ const router = createBrowserRouter([
       {
         path: "/details/:id",
         element: <Details></Details>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/places/${params.id}`),
+      },
+      {
+        path: "/booknow/:id",
+        element: <BookNow></BookNow>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/places/${params.id}`),
       },
@@ -58,6 +65,8 @@ const router = createBrowserRouter([
         path: "mybooking",
         element: <MyBooking></MyBooking>,
       },
+
+      //ADMIN ROUTES
       {
         path: "allusers",
         element: (
