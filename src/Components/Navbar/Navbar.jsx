@@ -1,11 +1,13 @@
 import { BsLuggageFill } from "react-icons/bs";
 import { HiMiniHome } from "react-icons/hi2";
-import { MdEmail } from "react-icons/md";
+import { MdAdminPanelSettings, MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
+import useAdmin from "../../Hook/useAdmin";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
+  const [isAdmin] = useAdmin();
   const handleLogout = () => {
     logoutUser()
       .then(() => {})
@@ -76,7 +78,7 @@ const Navbar = () => {
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar"
+                className="btn btn-ghost btn-circle avatar online"
               >
                 <div className="w-10 rounded-full">
                   <img
@@ -92,12 +94,29 @@ const Navbar = () => {
                 <li>
                   <a className="justify-between">
                     {user?.displayName}
-                    <span className="badge">New</span>
+                    {isAdmin ? (
+                      <span className="badge">
+                        <MdAdminPanelSettings />
+                      </span>
+                    ) : (
+                      <></>
+                    )}
                   </a>
                 </li>
-                <li>
-                  <Link to="/dashboard">Dashboard</Link>
-                </li>
+                {isAdmin ? (
+                  <>
+                    <li>
+                      <Link to="/dashboard">Dashboard</Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <Link to="/dashboard/mybooking">My Booking</Link>
+                    </li>
+                  </>
+                )}
+
                 <li>
                   <a onClick={handleLogout}>Logout</a>
                 </li>

@@ -10,6 +10,7 @@ import Packages from "../Pages/Packages/Packages";
 import Signup from "../Pages/Signup/Signup";
 import AdminRoute from "./AdminRoute";
 import PrivateRoutes from "./PrivateRoutes";
+import MyBooking from "../Pages/Dashboard/MyBooking/MyBooking";
 
 const router = createBrowserRouter([
   {
@@ -53,8 +54,10 @@ const router = createBrowserRouter([
       </PrivateRoutes>
     ),
     children: [
-        
-
+      {
+        path: "mybooking",
+        element: <MyBooking></MyBooking>,
+      },
       {
         path: "allusers",
         element: (

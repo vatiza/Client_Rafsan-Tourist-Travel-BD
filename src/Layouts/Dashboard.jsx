@@ -1,14 +1,19 @@
 import { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hook/useAdmin";
+import useAuth from "../Hook/useAuth";
+import { MdAdminPanelSettings } from "react-icons/md";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
+  const { user } = useAuth();
+  console.log(user);
   return (
     <div className="drawer lg:drawer-open ">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
+
         <div className="navbar bg-base-300 w-full">
           <div className=" navbar-end flex-1">
             <a className="btn btn-ghost text-xl">Dashboard</a>
@@ -47,9 +52,23 @@ const Dashboard = () => {
         ></label>
         <ul className="menu bg-base-200 min-h-full w-80 p-4">
           {/* Sidebar content here */}
+          <div>
+            <div className="flex items-center gap-3">
+              <div className="avatar-group -space-x-6 rtl:space-x-reverse">
+                <div className="avatar">
+                  <div className="w-12">
+                    <img src={user?.photoURL} />
+                  </div>
+                </div>
+              </div>
+              <h1>{user.displayName}</h1>
+              {isAdmin ? <MdAdminPanelSettings className="text-2xl text-red-600" /> : <></>}
+            </div>
+            <p className="ms-16 -mt-4">Email: {user?.email}</p>
+          </div>
           {isAdmin ? (
             <>
-              <li className="mt-12">
+              <li className="mt-10">
                 <a>Home</a>
               </li>
               <li>
@@ -68,10 +87,10 @@ const Dashboard = () => {
           ) : (
             <>
               <li className="mt-12">
-                <a> Normal User</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a>Booking</a>
+                <NavLink to="/dashboard/mybooking">My Booking</NavLink>
               </li>
             </>
           )}
