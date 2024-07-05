@@ -167,6 +167,8 @@ const BookNow = () => {
           </div>
         </div>
       </section>
+
+      {/* Booking Summary */}
       <div className=" ">
         <h2 className="text-xl font-bold mb-2 text-center">Booking Summary</h2>
         <div className="p-4 border">

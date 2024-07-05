@@ -7,7 +7,7 @@ import { MdAdminPanelSettings } from "react-icons/md";
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const { user } = useAuth();
-  console.log(user);
+
   return (
     <div className="drawer lg:drawer-open ">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -77,7 +77,7 @@ const Dashboard = () => {
                 <a>All Booking</a>
               </li>
               <li>
-                <a>Add Places</a>
+                <NavLink to="/dashboard/addplaces">Add Places</NavLink>
               </li>
               <li>
                 <a>Add Events</a>

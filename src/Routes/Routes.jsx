@@ -12,6 +12,7 @@ import AdminRoute from "./AdminRoute";
 import PrivateRoutes from "./PrivateRoutes";
 import MyBooking from "../Pages/Dashboard/MyBooking/MyBooking";
 import BookNow from "../Pages/BookNow/BookNow";
+import AddPlaces from "../Pages/Dashboard/AddPlaces/AddPlaces";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
             <AllUsers></AllUsers>
           </AdminRoute>
         ),
+      },
+      {
+        path: "addplaces",
+        element: <AddPlaces></AddPlaces>,
       },
     ],
   },
