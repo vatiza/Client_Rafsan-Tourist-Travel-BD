@@ -9,11 +9,13 @@ import { useState } from "react";
 import { IoLocation } from "react-icons/io5";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
 import toast, { Toaster } from "react-hot-toast";
+import useBookData from "../../Hook/useBookData";
 
 const BookNow = () => {
   const { user } = useAuth();
   const places = useLoaderData();
   const axiosSecure = useAxiosSecure();
+  const [, refetch] = useBookData();
   const { _id, img, name, division, activity, price, days } = places;
   const [members, setMembers] = useState(1);
   const {
@@ -33,6 +35,8 @@ const BookNow = () => {
         members: members,
         cMessage: data.message,
         placesName: name,
+        division: division,
+        perPersonPrice: parseFloat(price),
         totalPrice: parseFloat(calculateTotalPrice),
       };
       axiosSecure
