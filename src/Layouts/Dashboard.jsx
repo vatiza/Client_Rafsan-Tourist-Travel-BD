@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Hook/useAdmin";
 
 const Dashboard = () => {
-  const [isAdmin] = useState(true);
+  const [isAdmin] = useAdmin();
   return (
     <div className="drawer lg:drawer-open ">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -61,13 +62,13 @@ const Dashboard = () => {
                 <a>Add Events</a>
               </li>
               <li>
-                <NavLink to="/dashboard/users">All Users</NavLink>
+                <NavLink to="/dashboard/allusers">All Users</NavLink>
               </li>
             </>
           ) : (
             <>
               <li className="mt-12">
-                <a>Home</a>
+                <a> Normal User</a>
               </li>
               <li>
                 <a>Booking</a>

@@ -44,16 +44,15 @@ const AllUsers = () => {
               <td>{u.email}</td>
               <td>
                 {u.role === "admin" ? (
-                  "Admin"
+                  <>
+                    <MdAdminPanelSettings className="text-2xl text-green-700"/>
+                  </>
                 ) : (
                   <button
                     onClick={() => handleMakeAdmin(u._id)}
                     className="btn btn-lg bg-orange-500"
                   >
-                    <FaUsers
-                      className="text-white 
-                                        text-2xl"
-                    ></FaUsers>
+                    <FaUsers className="text-white text-2xl"></FaUsers>
                   </button>
                 )}
               </td>

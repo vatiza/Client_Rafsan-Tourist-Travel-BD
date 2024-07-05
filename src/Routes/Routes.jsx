@@ -1,14 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
+import Dashboard from "../Layouts/Dashboard";
 import Main from "../Layouts/Main";
 import Contactus from "../Pages/Contactus/Contactus";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Details from "../Pages/Packages/Details/Details";
 import Packages from "../Pages/Packages/Packages";
 import Signup from "../Pages/Signup/Signup";
-import Dashboard from "../Layouts/Dashboard";
-import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
-import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import AdminRoute from "./AdminRoute";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -45,16 +46,23 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoutes>
+        {" "}
+        <Dashboard></Dashboard>
+      </PrivateRoutes>
+    ),
     children: [
+        
+
       {
-        path: "admin",
-        element: <AdminHome></AdminHome>,
+        path: "allusers",
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
       },
-      {
-        path:'users',
-        element:<AllUsers></AllUsers>
-      }
     ],
   },
 ]);
