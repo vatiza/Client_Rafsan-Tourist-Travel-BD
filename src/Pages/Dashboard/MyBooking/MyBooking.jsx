@@ -1,10 +1,37 @@
 import React from "react";
 import useBookData from "../../../Hook/useBookData";
 import { FaTrashCan } from "react-icons/fa6";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hook/useAxiosSecure";
 
 const MyBooking = () => {
   const [booking, refetch] = useBookData();
   console.log(booking);
+  const axiosSecure = useAxiosSecure();
+  const handleRemoveBooking = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Cancel Your Booking?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Cancel it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/booking/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Canceled!",
+              text: "Your Booking has been canceled.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
   return (
     <div>
       <h1 className="text-center text-2xl font-bold lg:text-3xl my-3">
@@ -52,7 +79,10 @@ const MyBooking = () => {
                   <button className="btn">Details</button>
                 </td>
                 <td>
-                  <button className="btn">
+                  <button
+                    onClick={() => handleRemoveBooking(b?._id)}
+                    className="btn"
+                  >
                     <FaTrashCan />{" "}
                   </button>
                 </td>

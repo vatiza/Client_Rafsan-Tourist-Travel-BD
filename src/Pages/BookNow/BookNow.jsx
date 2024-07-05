@@ -42,7 +42,6 @@ const BookNow = () => {
       axiosSecure
         .post("/booking", bookingInfo)
         .then((res) => {
-          console.log(res.data);
           if (res.data.insertedId) {
             toast.success("Successfully Book Your Seat!");
           }
@@ -161,7 +160,7 @@ const BookNow = () => {
                 <input
                   value="Confirm"
                   type="submit"
-                  className="w-full h-12 text-white text-base font-semibold leading-6 rounded-lg transition-all duration-700 hover:bg-indigo-800 bg-indigo-600 shadow-sm"
+                  className="w-full h-12 btn text-white text-base font-semibold leading-6 rounded-lg transition-all duration-700 hover:bg-indigo-800 bg-indigo-600 shadow-sm"
                 />
               </div>
             </form>
