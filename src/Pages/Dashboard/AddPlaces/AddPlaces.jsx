@@ -8,7 +8,12 @@ const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 const AddPlaces = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const [days, setDays] = useState(1);
@@ -93,11 +98,14 @@ const AddPlaces = () => {
                 </label>
                 <div className="mt-2.5">
                   <input
-                    {...register("pname", {})}
+                    {...register("pname", { required: "Required" })}
                     type="text"
                     placeholder="Cox's Bazar"
                     className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 dark:bg-white"
                   />
+                  {errors.pname?.type === "required" && (
+                    <p className="text-red-700">Required</p>
+                  )}
                 </div>
               </div>
               <div>
@@ -106,10 +114,13 @@ const AddPlaces = () => {
                 </label>
                 <div className="mt-2.5">
                   <input
-                    {...register("division", {})}
+                    {...register("division", { required: "Required" })}
                     placeholder="Khulna"
                     className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 dark:bg-white"
                   />
+                  {errors.division?.type === "required" && (
+                    <p className="text-red-700">Required</p>
+                  )}
                 </div>
               </div>
               <div className="sm:col-span-2">
@@ -118,10 +129,13 @@ const AddPlaces = () => {
                 </label>
                 <div className="mt-2.5">
                   <textarea
-                    {...register("description", {})}
+                    {...register("description", { required: "Required" })}
                     placeholder="Cox's Bazar is the longest natural sea beach in the world..."
                     className="block w-full rounded-md border-0 px-3.5 py-2  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset dark:bg-white focus:ring-blue-600 sm:text-sm sm:leading-6"
                   ></textarea>
+                  {errors.description?.type === "required" && (
+                    <p className="text-red-700">Required</p>
+                  )}
                 </div>
               </div>
               <div className="sm:col-span-2">
@@ -130,10 +144,13 @@ const AddPlaces = () => {
                 </label>
                 <div className="mt-2.5">
                   <input
-                    {...register("subplacename", {})}
+                    {...register("subplacename", { required: "Required" })}
                     placeholder="Inani Beach, Himchari National Park"
                     className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 dark:bg-white"
                   />
+                  {errors.subplacename?.type === "required" && (
+                    <p className="text-red-700">Required</p>
+                  )}
                 </div>
               </div>
               <div className="sm:col-span-2">
@@ -142,10 +159,13 @@ const AddPlaces = () => {
                 </label>
                 <div className="mt-2.5">
                   <input
-                    {...register("activity", {})}
+                    {...register("activity", { required: "Required" })}
                     placeholder="Beach activities, hiking, photography"
                     className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 dark:bg-white"
                   />
+                  {errors.activity?.type === "required" && (
+                    <p className="text-red-700">Required</p>
+                  )}
                 </div>
               </div>
               <div className="sm:col-span-2">
@@ -154,10 +174,13 @@ const AddPlaces = () => {
                 </label>
                 <div className="mt-2.5">
                   <input
-                    {...register("include", {})}
+                    {...register("include", { required: "Required" })}
                     placeholder="Hotel stay, breakfast, guided tour"
                     className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 dark:bg-white"
                   />
+                  {errors.include?.type === "required" && (
+                    <p className="text-red-700">Required</p>
+                  )}
                 </div>
               </div>
               <div className="sm:col-span-2">
@@ -166,10 +189,13 @@ const AddPlaces = () => {
                 </label>
                 <div className="mt-2.5">
                   <input
-                    {...register("notInclude", {})}
+                    {...register("notInclude", { required: "Required" })}
                     placeholder="Lunch, dinner, personal expenses"
                     className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 dark:bg-white"
                   />
+                  {errors.notInclude?.type === "required" && (
+                    <p className="text-red-700">Required</p>
+                  )}
                 </div>
               </div>
               <div className="sm:col-span-2">
@@ -178,10 +204,13 @@ const AddPlaces = () => {
                 </label>
                 <div className="mt-2.5">
                   <input
-                    {...register("bestTimeToTravel", {})}
+                    {...register("bestTimeToTravel", { required: "Required" })}
                     placeholder="November to February"
                     className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 dark:bg-white"
                   />
+                  {errors.bestTimeToTravel?.type === "required" && (
+                    <p className="text-red-700">Required</p>
+                  )}
                 </div>
               </div>
               <div className="sm:col-span-2 flex gap-3 items-center">
@@ -230,10 +259,13 @@ const AddPlaces = () => {
               <span className="label-text font-bold">Price</span>
             </div>
             <input
-              {...register("price", {})}
+              {...register("price", { required: "Required" })}
               placeholder="BDT: 1200"
               className="block  rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 dark:bg-white"
             />
+            {errors.price?.type === "required" && (
+              <p className="text-red-700">Required</p>
+            )}
 
             <div className="label">
               <span className="label-text font-bold">Photo</span>
@@ -241,7 +273,7 @@ const AddPlaces = () => {
             <input
               type="file"
               className="file-input file-input-bordered block  rounded-md border-0 px-3.5 py-2  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 dark:bg-white"
-              {...register("image")}
+              {...register("image", { required: "Required" })}
             />
 
             <div className="mt-10">
