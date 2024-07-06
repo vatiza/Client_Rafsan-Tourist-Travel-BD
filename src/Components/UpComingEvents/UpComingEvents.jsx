@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
-import { useMediaQuery } from "react-responsive";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useState } from "react";
 import Tilt from "react-parallax-tilt";
+import { useMediaQuery } from "react-responsive";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import useEvents from "../../Hook/useEvents";
 const UpComingEvents = () => {
   const [events] = useEvents();
+
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const slidesPerView = isMobile ? 1 : 3;
 
