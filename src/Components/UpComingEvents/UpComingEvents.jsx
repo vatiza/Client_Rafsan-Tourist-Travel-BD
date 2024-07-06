@@ -5,13 +5,9 @@ import Tilt from "react-parallax-tilt";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import useEvents from "../../Hook/useEvents";
 const UpComingEvents = () => {
-  const [events, setEvents] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:5000/carousel")
-      .then((res) => res.json())
-      .then((data) => setEvents(data));
-  }, []);
+  const [events] = useEvents();
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const slidesPerView = isMobile ? 1 : 3;
 

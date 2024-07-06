@@ -1,21 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useAxiosPublic from "./useAxiosPublic";
 
-const usePlaceData = () => {
+const useEvents = () => {
   const axiosSecure = useAxiosPublic();
   const {
     refetch,
-    data: places = [],
+    data: events = [],
     isLoading: loading,
   } = useQuery({
-    queryKey: ["places"],
+    queryKey: ["events"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/places");
+      const res = await axiosSecure.get("/events");
       return res.data;
     },
   });
-  return [places, refetch, loading];
+  return [events, refetch, loading];
 };
 
-export default usePlaceData;
+export default useEvents;

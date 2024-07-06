@@ -83,7 +83,7 @@ const Dashboard = () => {
                 <NavLink to="/dashboard/addplaces">Add Places</NavLink>
               </li>
               <li>
-                <a>Add Events</a>
+                <NavLink to='/dashboard/addevents'>Add Events</NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/allusers">All Users</NavLink>

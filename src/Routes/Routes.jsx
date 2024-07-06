@@ -14,6 +14,7 @@ import MyBooking from "../Pages/Dashboard/MyBooking/MyBooking";
 import BookNow from "../Pages/BookNow/BookNow";
 import AddPlaces from "../Pages/Dashboard/AddPlaces/AddPlaces";
 import ManagePlaces from "../Pages/Dashboard/ManagePlaces/ManagePlaces";
+import AddEvents from "../Pages/Dashboard/AddEvents/AddEvents";
 
 const router = createBrowserRouter([
   {
@@ -99,6 +100,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AddPlaces></AddPlaces>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "addevents",
+        element: (
+          <AdminRoute>
+            <AddEvents></AddEvents>
           </AdminRoute>
         ),
       },
