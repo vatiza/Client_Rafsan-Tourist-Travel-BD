@@ -36,7 +36,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/booknow/:id",
-        element: <BookNow></BookNow>,
+        element: (
+          <PrivateRoutes>
+            {" "}
+            <BookNow></BookNow>
+          </PrivateRoutes>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/places/${params.id}`),
       },
@@ -65,7 +70,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "mybooking",
-        element: <MyBooking></MyBooking>,
+        element: (
+          <PrivateRoutes>
+            <MyBooking></MyBooking>
+          </PrivateRoutes>
+        ),
       },
 
       //ADMIN ROUTES

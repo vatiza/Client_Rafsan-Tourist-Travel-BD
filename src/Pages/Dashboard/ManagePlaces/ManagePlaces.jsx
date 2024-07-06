@@ -41,7 +41,7 @@ const ManagePlaces = () => {
         <h1 className="text-2xl font-bold lg:text-3xl">Manage Places</h1>
       </div>
       <div>
-        <h1 className="text-xl ms-3">Total Add Places : {places.length}</h1>
+        <h1 className="text-xl ms-3">Total Places : {places.length}</h1>
       </div>
       <div className="overflow-x-auto">
         <table className="table">

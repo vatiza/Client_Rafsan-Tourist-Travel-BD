@@ -71,7 +71,7 @@ const Dashboard = () => {
           {isAdmin ? (
             <>
               <li className="mt-10">
-                <a>Home</a>
+                <NavLink to="/">Home</NavLink>
               </li>
               <li>
                 <a>All Booking</a>

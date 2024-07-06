@@ -48,9 +48,12 @@ const Details = () => {
                     </Link>
                   </div>
                   <div className="w-1/2 px-2">
-                    <button className="w-full text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                    <Link
+                      to="/contactus"
+                      className="w-full text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                    >
                       Contact Us
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
