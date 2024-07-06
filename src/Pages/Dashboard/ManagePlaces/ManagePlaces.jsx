@@ -20,7 +20,6 @@ const ManagePlaces = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const res = await axiosSecure.delete(`/places/${p._id}`);
-
         if (res.data.deletedCount > 0) {
           refetch();
           Swal.fire({
