@@ -11,7 +11,7 @@ const MyBooking = () => {
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
 
-  const handlePayment = () => {
+  const handlePayment = (bookingData) => {
     Swal.fire({
       title: "Choose The Payment Gateway",
       showDenyButton: true,
@@ -24,14 +24,14 @@ const MyBooking = () => {
         try {
           axiosPublic
             .post("/bkash-checkout", {
-              amount: 1299,
+              amount: bookingData.totalPrice,
               callbackURL: "http://localhost:5000/bkash-callback",
               orderID: 1223,
-              reference: 2343,
+              reference: bookingData._id,
             })
             .then((res) => {
-              console.log(res)
-              window.location.href=res?.data
+              console.log(res);
+              window.location.href = res?.data;
             })
             .catch((e) => {
               console.log(e);
@@ -110,7 +110,7 @@ const MyBooking = () => {
                 </td>
                 <td>{b?.cMessage}</td>
                 <td>
-                  <button className="btn" onClick={() => handlePayment()}>
+                  <button className="btn" onClick={() => handlePayment(b)}>
                     Payment Now
                   </button>
                 </td>

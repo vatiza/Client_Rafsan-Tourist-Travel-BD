@@ -4,7 +4,7 @@ import useAxiosPublic from "../../Hook/useAxiosPublic";
 
 const SocialLogin = () => {
   const axiosPublic = useAxiosPublic();
-  const { googleLogin } = useAuth();
+  const { googleLogin, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -20,8 +20,6 @@ const SocialLogin = () => {
           console.log(res.data);
           navigate(from, { replace: true });
         });
-
-        navigate(from, { replace: true });
       })
       .catch((e) => {
         console.log(e.message);
