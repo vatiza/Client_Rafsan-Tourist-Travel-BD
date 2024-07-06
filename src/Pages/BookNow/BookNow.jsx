@@ -137,7 +137,11 @@ const BookNow = () => {
                   </div>
                   <div>
                     <a
-                      onClick={() => setMembers(members - 1)}
+                      onClick={() => {
+                        if (members > 1) {
+                          setMembers(members - 1);
+                        }
+                      }}
                       className="px-4 btn btn-sm py-2 bg-gray-200"
                     >
                       -
@@ -155,7 +159,7 @@ const BookNow = () => {
                 <textarea
                   {...register("message")}
                   placeholder="Message "
-                  className="textarea textarea-bordered textarea-lg w-full  "
+                  className="textarea textarea-bordered textarea-lg w-full   "
                 ></textarea>
                 <input
                   value="Confirm"
