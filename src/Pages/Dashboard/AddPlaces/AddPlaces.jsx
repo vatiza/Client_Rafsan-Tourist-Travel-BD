@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaUtensils } from "react-icons/fa6";
+import Swal from "sweetalert2";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
 
@@ -53,15 +53,24 @@ const AddPlaces = () => {
         img: res.data.data.display_url,
         sub_place_name: data.subplacename,
         activity: data.activity,
-        price: data.price,
+        price: parseFloat(data.price),
         include: data.include,
         not_include: data.notInclude,
         best_time_to_travel: data.bestTimeToTravel,
         days: days,
-        itinerary: itinerary
+        itinerary: itinerary,
       };
-      console.log(placeInfo);
-      // const postPlace = await axiosSecure.post("/places", placeInfo);
+
+      const postPlace = await axiosSecure.post("/places", placeInfo);
+      console.log(postPlace.data);
+      if (postPlace.data.insertedId) {
+        Swal.fire({
+          title: `${data.pname} is added to the Places.`,
+
+          icon: "success",
+        });
+        reset();
+      }
     }
   };
   return (
@@ -221,7 +230,7 @@ const AddPlaces = () => {
               <span className="label-text font-bold">Price</span>
             </div>
             <input
-              {...register("amount", {})}
+              {...register("price", {})}
               placeholder="BDT: 1200"
               className="block  rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 dark:bg-white"
             />
