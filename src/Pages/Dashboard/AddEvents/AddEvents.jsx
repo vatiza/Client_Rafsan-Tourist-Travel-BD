@@ -20,11 +20,15 @@ const AddEvents = () => {
   } = useForm();
   const onSubmit = async (data) => {
     const imageFile = { image: data.image[0] };
-    const res = await axiosPublic.post(img_hosting_api, imageFile, {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    });
+    const res = await axiosPublic
+      .post(img_hosting_api, imageFile, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      })
+      .catch((e) => {
+        toast.error("Something Wrong! Try Again!");
+      });
     if (res.data.success) {
       const photoUrl = res.data.data.display_url;
       const eventsData = {

@@ -4,6 +4,7 @@ import usePlaceData from "../../../Hook/usePlaceData";
 import { FaRegEdit } from "react-icons/fa";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const ManagePlaces = () => {
   const [places, refetch] = usePlaceData();
@@ -61,13 +62,15 @@ const ManagePlaces = () => {
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
-                      <div className="mask mask-squircle h-12 w-12">
+                      <div className="mask mask-squircle h-12 w-12 ">
                         <img src={p.img} alt="Avatar Tailwind CSS Component" />
                       </div>
                     </div>
                     <div>
                       {/* TODO: Full Details page showing when click name */}
-                      <div className="font-bold">{p.name}</div>
+                      <Link to={`/details/${p._id}`} className="font-bold">
+                        {p.name}
+                      </Link>
                       <div className="text-sm opacity-50">{p.division}</div>
                     </div>
                   </div>
