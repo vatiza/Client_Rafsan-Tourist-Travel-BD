@@ -41,17 +41,19 @@ const Signup = () => {
         toast.success("Account Created Successful!");
         console.log(result.user);
         updateUserProfile(name, photoUrl)
-          .then(() => {
+          .then(async () => {
             const userInfo = {
               name: data.name,
               email: data.email,
             };
-            axiosPublic.post("/users", userInfo).then((res) => {
-              if (res.data.insertedId) {
-                console.log("user added to the database");
-                toast.success("Account Created Successful!");
-              }
-            });
+
+            const res = await axiosPublic.post("/users", userInfo);
+
+            if (res.data.insertedId) {
+              console.log("user added to the database");
+              toast.success("Account Created Successful!");
+            }
+
             navigate(from, { replace: true });
           })
           .catch((e) => console.log(e.message));

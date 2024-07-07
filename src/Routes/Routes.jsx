@@ -41,7 +41,9 @@ const router = createBrowserRouter([
         path: "/details/:id",
         element: <Details></Details>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/places/${params.id}`),
+          fetch(
+            `https://server-rafsan-tourist-travel-bd.vercel.app/places/${params.id}`
+          ),
       },
       {
         path: "/booknow/:id",
@@ -52,7 +54,9 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/places/${params.id}`),
+          fetch(
+            `https://server-rafsan-tourist-travel-bd.vercel.app/places/${params.id}`
+          ),
       },
       {
         path: "/gallery",

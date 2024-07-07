@@ -11,7 +11,7 @@ import { Rating } from "@smastrom/react-rating";
 const Testimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/testimonials")
+    fetch("https://server-rafsan-tourist-travel-bd.vercel.app/testimonials")
       .then((res) => res.json())
       .then((data) => setTestimonials(data));
   }, []);

@@ -12,7 +12,7 @@ const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 const AddPhotos = () => {
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
-  const [gallery, refetch, loading] = useGallery();
+  const [gallery, refetch] = useGallery();
   const {
     register,
     handleSubmit,
@@ -39,6 +39,7 @@ const AddPhotos = () => {
 
       axiosSecure.post("/gallery", eventsData).then((res) => {
         if (res.data.insertedId) {
+          refetch();
           toast.success("Successfully!");
         } else {
           toast.error("Something Wrong! Try Again!");

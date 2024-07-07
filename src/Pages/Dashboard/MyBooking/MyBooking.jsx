@@ -7,7 +7,7 @@ import useBookData from "../../../Hook/useBookData";
 
 const MyBooking = () => {
   const [booking, refetch] = useBookData();
-  console.log(booking);
+
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   // TODO: Payment is Loading.just fun mode in running.
@@ -25,7 +25,8 @@ const MyBooking = () => {
           axiosPublic
             .post("/bkash-checkout", {
               amount: bookingData.totalPrice,
-              callbackURL: "http://localhost:5000/bkash-callback",
+              callbackURL:
+                "https://server-rafsan-tourist-travel-bd.vercel.app/bkash-callback",
               orderID: 1223,
               reference: bookingData._id,
             })
