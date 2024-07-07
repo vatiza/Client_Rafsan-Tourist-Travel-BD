@@ -76,7 +76,7 @@ const Navbar = () => {
           </ul>
         </div>
         <a className="font-avro text-3xl font-bold hidden lg:flex">
-          Rafsan Tourist & Travel <span className="text-green-600">BD</span>
+          Rafsan Tourist & Travel <span className="text-green-600">BD</span> <span className="badge badge-warning">beta</span>
         </a>
       </div>
 
@@ -136,7 +136,7 @@ const Navbar = () => {
             </div>
           </div>
         ) : (
-          <Link to="/login" className="btn">
+          <Link to="/login" className="btn btn-outline shadow-lg">
             Login
           </Link>
         )}

@@ -32,9 +32,10 @@ const Footer = () => {
         </div>
       </nav>
       <aside>
+      <span className="badge badge-warning">beta version</span>
         <p>
           Copyright © ${new Date().getFullYear()} - All right reserved by Rafsan
-          Tourist & Travel BD
+          Tourist & Travel BD 
         </p>
       </aside>
     </footer>
