@@ -5,6 +5,7 @@ import { Fade, Slide } from "react-awesome-reveal";
 import toast, { Toaster } from "react-hot-toast";
 import Header from "../../Components/Header/Header";
 import bgimg from "../../assets/img/img4.png";
+import { Helmet } from "react-helmet-async";
 const Contactus = () => {
   const form = useRef();
   const sendEmail = (e) => {
@@ -32,6 +33,9 @@ const Contactus = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Rafsan Tourist ... || Contact Us</title>
+      </Helmet>
       <Header
         img={bgimg}
         text={"Contact Us"}

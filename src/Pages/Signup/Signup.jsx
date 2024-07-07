@@ -7,6 +7,7 @@ import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
@@ -60,6 +61,9 @@ const Signup = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
+      <Helmet>
+        <title>Rafsan Tourist... || Sign Up</title>
+      </Helmet>
       <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
         <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
           <div>

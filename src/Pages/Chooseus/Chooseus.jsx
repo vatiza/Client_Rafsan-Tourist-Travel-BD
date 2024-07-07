@@ -1,9 +1,11 @@
+import { Helmet } from "react-helmet-async";
 import { FaCircleDollarToSlot } from "react-icons/fa6";
 import { RiHotelLine, RiTeamLine } from "react-icons/ri";
 
 const Chooseus = () => {
   return (
     <div>
+      
       <div className="text-center">
         {" "}
         <h1 className=" text-xl font-bold lg:text-6xl mt-4">Why Choose Us</h1>

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Header from "../../Components/Header/Header";
 import usePlaceData from "../../Hook/usePlaceData";
 import bgimg from "../../assets/img/img7.png";
@@ -8,6 +9,9 @@ const Packages = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Rafsan Tourist ... || Packages</title>
+      </Helmet>
       <Header
         img={bgimg}
         text={"Packages"}

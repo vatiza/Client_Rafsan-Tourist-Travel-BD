@@ -1,15 +1,14 @@
-import { FaLocationArrow } from "react-icons/fa6";
-import { GrMapLocation } from "react-icons/gr";
-import { MdLocationCity, MdOutlinePreview, MdPreview } from "react-icons/md";
-import { TbCoinTakaFilled, TbSunMoon } from "react-icons/tb";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
+import { IoLocation } from "react-icons/io5";
+import { MdLocationCity, MdPreview } from "react-icons/md";
+import { TbCoinTakaFilled } from "react-icons/tb";
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { IoLocation } from "react-icons/io5";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
-import toast, { Toaster } from "react-hot-toast";
 import useBookData from "../../Hook/useBookData";
+import { Helmet } from "react-helmet-async";
 
 const BookNow = () => {
   const { user } = useAuth();
@@ -43,6 +42,7 @@ const BookNow = () => {
         .post("/booking", bookingInfo)
         .then((res) => {
           if (res.data.insertedId) {
+            refetch();
             toast.success("Successfully Book Your Seat!");
           }
         })
@@ -54,6 +54,9 @@ const BookNow = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Rafsan Tourist ... || Checkout</title>
+      </Helmet>
       <div className="text-center text-2xl font-bold">Checkout ...</div>
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

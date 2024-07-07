@@ -1,6 +1,7 @@
 import { Link, useLoaderData } from "react-router-dom";
 import SimpleParallax from "simple-parallax-js";
 import Header from "../../../Components/Header/Header";
+import { Helmet } from "react-helmet-async";
 
 const Details = () => {
   const details = useLoaderData();
@@ -22,6 +23,9 @@ const Details = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Rafsan Tourist... || Details</title>
+      </Helmet>
       <Header img={img} text={name} subText={division}></Header>
       <div>
         <div className="bg-gray-100 dark:bg-gray-800 py-8">

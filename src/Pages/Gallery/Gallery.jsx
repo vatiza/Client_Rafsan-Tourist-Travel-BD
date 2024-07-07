@@ -1,6 +1,7 @@
 import useGallery from "../../Hook/useGallery";
 import moment from "moment/moment";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import SimpleParallax from "simple-parallax-js";
 const Gallery = () => {
   const [gallery, refetch, loading] = useGallery();
@@ -8,6 +9,9 @@ const Gallery = () => {
 
   return (
     <>
+    <Helmet>
+        <title>Rafsan Tourist ... || Gallery</title>
+      </Helmet>
       <h1 className="text-center text-2xl lg:text-4xl font-bold mt-5">
         Gallery
       </h1>
