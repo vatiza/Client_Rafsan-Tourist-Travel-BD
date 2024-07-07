@@ -1,19 +1,19 @@
 import React from "react";
-import { FaTrashCan } from "react-icons/fa6";
+import { MdOutlineCancel } from "react-icons/md";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
-import useBookData from "../../../Hook/useBookData";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
+import useBookData from "../../../Hook/useBookData";
 
 const MyBooking = () => {
   const [booking, refetch] = useBookData();
   console.log(booking);
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
-
+  // TODO: Payment is Loading.just fun mode in running.
   const handlePayment = (bookingData) => {
     Swal.fire({
-      title: "Choose The Payment Gateway",
+      title: "Choose The Payment Gateway 🤣just fun!🤣 ",
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: "Bkash",
@@ -40,7 +40,7 @@ const MyBooking = () => {
           console.log(error);
         }
       } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
+        Swal.fire("Nagad is Coming...", "", "info");
       }
     });
   };
@@ -85,7 +85,7 @@ const MyBooking = () => {
               <th>Messages</th>
               <th>Process</th>
               <th>Details</th>
-              <th>Delete</th>
+              <th>Cancel</th>
             </tr>
           </thead>
           <tbody>
@@ -128,9 +128,9 @@ const MyBooking = () => {
                 <td>
                   <button
                     onClick={() => handleRemoveBooking(b?._id)}
-                    className="btn"
+                    className="btn btn-outline btn-sm  btn-error"
                   >
-                    <FaTrashCan />{" "}
+                    <MdOutlineCancel />
                   </button>
                 </td>
               </tr>
