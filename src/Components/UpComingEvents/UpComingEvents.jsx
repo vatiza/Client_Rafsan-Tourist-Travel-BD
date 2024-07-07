@@ -21,11 +21,11 @@ const UpComingEvents = () => {
           <span className=" text-3xl lg:text-6xl text-green-600">Events </span>
         </h1>
         <div className="flex justify-end my-4">
-        {" "}
-        <Link className=" btn" to="/allevents">
-          See All
-        </Link>
-      </div>
+          {" "}
+          <Link className=" btn" to="/allevents">
+            See All -Events
+          </Link>
+        </div>
       </div>
       <Swiper
         slidesPerView={slidesPerView}

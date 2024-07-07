@@ -100,9 +100,12 @@ const MyBooking = () => {
                   </span>
                 </td>
                 <td>
-                  Members : {b?.members}
+                  <span className="badge badge-accent badge-outline">
+                    {" "}
+                    BDT : {b?.totalPrice}
+                  </span>
                   <br />
-                  BDT : {b?.totalPrice}
+                  Members : {b?.members}
                   <br />
                   <span className="badge badge-ghost badge-sm">
                     Per Person : {b?.perPersonPrice}
@@ -110,12 +113,17 @@ const MyBooking = () => {
                 </td>
                 <td>{b?.cMessage}</td>
                 <td>
-                  <button className="btn" onClick={() => handlePayment(b)}>
-                    Payment Now
+                  <button
+                    className="btn btn-outline btn-sm btn-warning"
+                    onClick={() => handlePayment(b)}
+                  >
+                    Pay Now
                   </button>
                 </td>
                 <td>
-                  <button className="btn">Details</button>
+                  <button className="btn btn-outline btn-info btn-sm">
+                    Details
+                  </button>
                 </td>
                 <td>
                   <button

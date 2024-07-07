@@ -97,7 +97,7 @@ const Details = () => {
                 </div>
                 <div>
                   <span className="font-bold ">Itinerary:</span>
-                  <div className=" mt-2">
+                  <div className="-ms-40 ">
                     {Object.keys(itinerary).map((day, index) => (
                       <div key={index}>
                         <ul className="timeline timeline-vertical">

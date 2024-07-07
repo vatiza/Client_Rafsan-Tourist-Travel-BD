@@ -24,7 +24,7 @@ const GallerySliders = () => {
       <div className="flex justify-end my-4">
         {" "}
         <Link className=" btn" to="/gallery">
-          See All
+          See All -Photos
         </Link>
       </div>
       <div>

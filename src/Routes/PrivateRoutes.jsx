@@ -1,12 +1,13 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../Hook/useAuth";
 
+import ClockLoader from "react-spinners/ClockLoader";
 const PrivateRoutes = ({ children }) => {
   const { user, loading } = useAuth();
   const location = useLocation();
 
   if (loading) {
-    return <progress className="progress w-56"></progress>;
+    return <ClockLoader color="#1b08ff" />;
   }
   if (user) {
     return children;

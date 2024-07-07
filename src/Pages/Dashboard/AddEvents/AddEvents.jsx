@@ -82,7 +82,7 @@ const AddEvents = () => {
           </div>
           <input
             type="file"
-            className="file-input file-input-bordered w-full max-w-xs text-white"
+            className="file-input file-input-bordered w-full max-w-xs "
             {...register("image", { required: true })}
           />
           <div className="label ">
@@ -90,7 +90,7 @@ const AddEvents = () => {
           </div>
           <input
             type="date"
-            className="file-input file-input-bordered w-full max-w-xs text-white"
+            className="file-input file-input-bordered w-full max-w-xs "
             {...register("date", { required: true })}
           />
         </div>

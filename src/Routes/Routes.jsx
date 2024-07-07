@@ -6,9 +6,12 @@ import Contactus from "../Pages/Contactus/Contactus";
 import AddEvents from "../Pages/Dashboard/AddEvents/AddEvents";
 import AddPhotos from "../Pages/Dashboard/AddPhotos/AddPhotos";
 import AddPlaces from "../Pages/Dashboard/AddPlaces/AddPlaces";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import ManagePlaces from "../Pages/Dashboard/ManagePlaces/ManagePlaces";
 import MyBooking from "../Pages/Dashboard/MyBooking/MyBooking";
+import AllEvents from "../Pages/Events/AllEvents";
+import Gallery from "../Pages/Gallery/Gallery";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Details from "../Pages/Packages/Details/Details";
@@ -16,9 +19,6 @@ import Packages from "../Pages/Packages/Packages";
 import Signup from "../Pages/Signup/Signup";
 import AdminRoute from "./AdminRoute";
 import PrivateRoutes from "./PrivateRoutes";
-import Gallery from "../Pages/Gallery/Gallery";
-import AllEvents from "../Pages/Events/AllEvents";
-import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 
 const router = createBrowserRouter([
   {
