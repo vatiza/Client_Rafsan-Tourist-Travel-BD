@@ -39,7 +39,6 @@ const Dashboard = () => {
             </label>
           </div>
         </div>
-        {/* Page content here */}
         <Outlet></Outlet>
       </div>
       <div className="drawer-side ">

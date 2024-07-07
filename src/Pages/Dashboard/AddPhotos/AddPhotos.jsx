@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { FaTrash } from "react-icons/fa6";
 import useGallery from "../../../Hook/useGallery";
 import moment from "moment";
+import Swal from "sweetalert2";
 
 const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
@@ -38,15 +39,39 @@ const AddPhotos = () => {
 
       axiosSecure.post("/gallery", eventsData).then((res) => {
         if (res.data.insertedId) {
-          toast.success("Successfully Add New Events!");
+          toast.success("Successfully!");
         } else {
           toast.error("Something Wrong! Try Again!");
         }
       });
     }
   };
-  console.log(gallery);
-  const handleDelete = () => {};
+
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosSecure.delete(`/gallery/${id}`);
+        if (res.data.deletedCount > 0) {
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Photo has been deleted",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      }
+    });
+  };
   return (
     <div>
       <div className="text-center my-4">
@@ -76,7 +101,7 @@ const AddPhotos = () => {
       </form>
 
       <div className="mt-6">
-        <h1 className="ms-5 text-2xl font-bold">Manage Events</h1>
+        <h1 className="ms-5 text-2xl font-bold">Manage Photos</h1>
       </div>
       <div>
         <div className="overflow-x-auto">
@@ -115,7 +140,10 @@ const AddPhotos = () => {
                   </td>
 
                   <td>
-                    <button onClick={() => handleDelete()} className="btn">
+                    <button
+                      onClick={() => handleDelete(g?._id)}
+                      className="btn"
+                    >
                       <FaTrash className="text-red-600 " />
                     </button>
                   </td>

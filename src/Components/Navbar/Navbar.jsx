@@ -1,6 +1,6 @@
 import { BsLuggageFill } from "react-icons/bs";
 import { HiMiniHome } from "react-icons/hi2";
-import { MdAdminPanelSettings, MdEmail } from "react-icons/md";
+import { MdAdminPanelSettings, MdEmail, MdEvent } from "react-icons/md";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
 import useAdmin from "../../Hook/useAdmin";
@@ -20,6 +20,11 @@ const Navbar = () => {
       <li>
         <Link to="/">
           <HiMiniHome /> Home
+        </Link>
+      </li>
+      <li>
+        <Link to="/allevents">
+          <MdEvent /> Events
         </Link>
       </li>
 

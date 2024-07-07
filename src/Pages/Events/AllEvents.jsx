@@ -1,38 +1,35 @@
-import useGallery from "../../Hook/useGallery";
-import moment from "moment/moment";
+import moment from "moment";
+import useEvents from "../../Hook/useEvents";
 import { useState } from "react";
-import SimpleParallax from "simple-parallax-js";
-const Gallery = () => {
-  const [gallery, refetch, loading] = useGallery();
+
+const AllEvents = () => {
+  const [events] = useEvents();
   const [selectedImage, setSelectedImage] = useState(null);
 
   return (
     <>
-      <h1 className="text-center text-2xl lg:text-4xl font-bold mt-5">
-        Gallery
+      <h1 className="text-center font-bold text-2xl lg:text-4xl mt-5">
+        Events
       </h1>
       <div className="mx-2 md:mx-24 mt-5">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-          {gallery.map((g) => (
+          {events.map((e) => (
             <div
-              key={g._id}
+              key={e._id}
               className="relative group cursor-pointer"
-              onClick={() => setSelectedImage(g.img)}
+              onClick={() => setSelectedImage(e.img)}
             >
               <div className="relative bg-gray-100 rounded-lg overflow-hidden">
-                <SimpleParallax>
-                  <img
-                    className="h-auto max-w-full rounded-lg transform transition-transform duration-500 ease-in-out group-hover:scale-105"
-                    src={g.img}
-                    alt="Gallery image"
-                  />
-                </SimpleParallax>
+                <img
+                  className="h-auto max-w-full rounded-lg transform transition-transform duration-500 ease-in-out group-hover:scale-105"
+                  src={e.img}
+                  alt="Gallery image"
+                />
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <div>
                     <h1 className="text-white font-bold text-lg">
-                      {g?.placesName}
+                      {moment(e?.date).format("LL")}
                     </h1>
-                    <p className="text-white">{moment(g?.date).format("LL")}</p>
                   </div>
                 </div>
               </div>
@@ -59,4 +56,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default AllEvents;

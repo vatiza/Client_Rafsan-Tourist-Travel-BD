@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useEvents from "../../Hook/useEvents";
+import { Link } from "react-router-dom";
 const UpComingEvents = () => {
   const [events] = useEvents();
 
@@ -14,10 +15,18 @@ const UpComingEvents = () => {
 
   return (
     <>
-      <h1 className=" text-center my-8 font-bold text-3xl lg:text-5xl ">
-        Up Coming
-        <span className=" text-3xl lg:text-6xl text-green-600">Events </span>
-      </h1>
+      <div>
+        <h1 className=" text-center my-8 font-bold text-3xl lg:text-5xl ">
+          Up Coming
+          <span className=" text-3xl lg:text-6xl text-green-600">Events </span>
+        </h1>
+        <div className="flex justify-end my-4">
+        {" "}
+        <Link className=" btn" to="/allevents">
+          See All
+        </Link>
+      </div>
+      </div>
       <Swiper
         slidesPerView={slidesPerView}
         spaceBetween={-30}

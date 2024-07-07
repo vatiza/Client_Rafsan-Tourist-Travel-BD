@@ -1,6 +1,5 @@
-import React from "react";
-
 const AdminHome = () => {
+  // TODO:Remake Next Time. its not ok . just test
   return (
     <div>
       <h1>Admin Home</h1>

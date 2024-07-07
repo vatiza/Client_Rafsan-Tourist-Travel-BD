@@ -17,6 +17,8 @@ import Signup from "../Pages/Signup/Signup";
 import AdminRoute from "./AdminRoute";
 import PrivateRoutes from "./PrivateRoutes";
 import Gallery from "../Pages/Gallery/Gallery";
+import AllEvents from "../Pages/Events/AllEvents";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/packages",
         element: <Packages></Packages>,
+      },
+      {
+        path: "/allevents",
+        element: <AllEvents></AllEvents>,
       },
       {
         path: "/details/:id",
@@ -75,6 +81,10 @@ const router = createBrowserRouter([
       </PrivateRoutes>
     ),
     children: [
+      {
+        path: "/dashboard",
+        element: <AdminHome></AdminHome>,
+      },
       {
         path: "mybooking",
         element: (

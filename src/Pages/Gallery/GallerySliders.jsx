@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { EffectCoverflow, Pagination } from "swiper/modules";
+import { Link } from "react-router-dom";
 const GallerySliders = () => {
   const [gallery, loading] = useGallery();
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -20,6 +21,12 @@ const GallerySliders = () => {
         <span className=" text-3xl lg:text-6xl text-green-600">Best </span>
         Moments
       </h1>
+      <div className="flex justify-end my-4">
+        {" "}
+        <Link className=" btn" to="/gallery">
+          See All
+        </Link>
+      </div>
       <div>
         <Swiper
           effect={"coverflow"}
