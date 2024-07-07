@@ -4,6 +4,7 @@ import Main from "../Layouts/Main";
 import BookNow from "../Pages/BookNow/BookNow";
 import Contactus from "../Pages/Contactus/Contactus";
 import AddEvents from "../Pages/Dashboard/AddEvents/AddEvents";
+import AddPhotos from "../Pages/Dashboard/AddPhotos/AddPhotos";
 import AddPlaces from "../Pages/Dashboard/AddPlaces/AddPlaces";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import ManagePlaces from "../Pages/Dashboard/ManagePlaces/ManagePlaces";
@@ -15,6 +16,7 @@ import Packages from "../Pages/Packages/Packages";
 import Signup from "../Pages/Signup/Signup";
 import AdminRoute from "./AdminRoute";
 import PrivateRoutes from "./PrivateRoutes";
+import Gallery from "../Pages/Gallery/Gallery";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,10 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/places/${params.id}`),
+      },
+      {
+        path: "/gallery",
+        element: <Gallery></Gallery>,
       },
       {
         path: "/contactus",
@@ -95,7 +101,14 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-
+      {
+        path: "addphotos",
+        element: (
+          <AdminRoute>
+            <AddPhotos></AddPhotos>
+          </AdminRoute>
+        ),
+      },
       {
         path: "addplaces",
         element: (

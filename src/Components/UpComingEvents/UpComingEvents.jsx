@@ -14,6 +14,10 @@ const UpComingEvents = () => {
 
   return (
     <>
+      <h1 className=" text-center my-8 font-bold text-3xl lg:text-5xl ">
+        Up Coming
+        <span className=" text-3xl lg:text-6xl text-green-600">Events </span>
+      </h1>
       <Swiper
         slidesPerView={slidesPerView}
         spaceBetween={-30}

@@ -4,6 +4,7 @@ import { MdAdminPanelSettings, MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
 import useAdmin from "../../Hook/useAdmin";
+import { IoMdPhotos } from "react-icons/io";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
@@ -26,6 +27,12 @@ const Navbar = () => {
         <Link to="/packages">
           <BsLuggageFill />
           Packages
+        </Link>
+      </li>
+      <li>
+        <Link to="/gallery">
+          <IoMdPhotos />
+          Gallery
         </Link>
       </li>
       <li>
