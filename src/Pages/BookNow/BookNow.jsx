@@ -24,38 +24,35 @@ const BookNow = () => {
   } = useForm();
   const calculateTotalPrice = members * price;
   const onSubmit = async (data) => {
-    console.log(data);
     if (user && user?.email) {
       const bookingInfo = {
         placeId: _id,
         cName: user?.displayName,
         cEmail: user?.email,
         cPhone: data.phone,
+        date: data.date,
         members: members,
         cMessage: data.message,
         placesName: name,
         division: division,
+
         perPersonPrice: parseFloat(price),
         totalPrice: parseFloat(calculateTotalPrice),
       };
-      axiosSecure
-        .post("/booking", bookingInfo)
-        .then((res) => {
-          if (res.data.insertedId) {
-            refetch();
-            toast.success("Successfully Book Your Seat!");
-          }
-        })
-        .catch((e) => {
-          toast.error("Something Wrong! Please Try Again.");
-        });
+      const res = await axiosSecure.post("/booking", bookingInfo);
+      if (res.data.insertedId) {
+        refetch();
+        toast.success("Successfully Book Your Seat!");
+      }
+      if (!res.data.insertedId) {
+        toast.error("Something Wrong! Please Try Again.");
+      }
     }
   };
-
   return (
     <div>
       <Helmet>
-        <title>Rafsan Tourist ... || Checkout</title>
+        <title>Rafsan Tourist... || Checkout</title>
       </Helmet>
       <div className="text-center text-2xl font-bold">Checkout ...</div>
       <section className="py-24">
@@ -132,6 +129,11 @@ const BookNow = () => {
                 {errors.phone?.type === "maxLength" && (
                   <p className="text-red-600">Please Valid Phone Number </p>
                 )}
+                <input
+                  type="date"
+                  className="file-input my-4 file-input-bordered w-full "
+                  {...register("date", { required: true })}
+                />
 
                 <div className="flex justify-between    mb-5 items-center">
                   <div>
@@ -204,11 +206,13 @@ const BookNow = () => {
             <div className="flex-grow border-b border-dashed border-gray-300 mr-2"></div>
             <span className="float-right"> {members} </span>
           </div>
+
           <div className="flex items-center justify-between  ">
             <p> Price (Per Person):</p>
             <div className="flex-grow border-b border-dashed border-gray-300 mr-2"></div>
             <span className="float-right">BDT : {price} TK</span>
           </div>
+
           <div className="flex items-center justify-between font-bold text-xl">
             <p>Total Price:</p>
             <div className="flex-grow border-b border-dashed border-gray-300 mr-2"></div>

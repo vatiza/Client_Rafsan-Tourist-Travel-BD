@@ -6,10 +6,11 @@ import { FaTrash } from "react-icons/fa6";
 import useGallery from "../../../Hook/useGallery";
 import moment from "moment";
 import Swal from "sweetalert2";
-
+import useSound from 'use-sound';
 const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 const AddPhotos = () => {
+ 
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const [gallery, refetch] = useGallery();

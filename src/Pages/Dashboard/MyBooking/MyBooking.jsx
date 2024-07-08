@@ -1,9 +1,11 @@
 import React from "react";
-import { MdOutlineCancel } from "react-icons/md";
+import { MdOutlineCancel, MdOutlinePerson } from "react-icons/md";
+import { TbCoinTaka } from "react-icons/tb";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
 import useBookData from "../../../Hook/useBookData";
+import moment from "moment";
 
 const MyBooking = () => {
   const [booking, refetch] = useBookData();
@@ -96,21 +98,22 @@ const MyBooking = () => {
                 <td>
                   {b?.placesName}
                   <br />
-                  <span className="badge badge-ghost badge-sm">
+                  <span className="badge badge-ghost badge-sm ">
                     {b?.division}
+                  </span>
+                  <br />
+                  <span className="badge badge-ghost badge-sm ">
+                    {moment(b?.date).format("ll")}
                   </span>
                 </td>
                 <td>
-                  <span className="badge badge-accent badge-outline">
-                    {" "}
-                    BDT : {b?.totalPrice}
+                  BDT: {b?.totalPrice}
+                  <br />
+                  <span className="flex items-center">
+                    <MdOutlinePerson />
+                    {b?.members}
                   </span>
                   <br />
-                  Members : {b?.members}
-                  <br />
-                  <span className="badge badge-ghost badge-sm">
-                    Per Person : {b?.perPersonPrice}
-                  </span>
                 </td>
                 <td>{b?.cMessage}</td>
                 <td>
