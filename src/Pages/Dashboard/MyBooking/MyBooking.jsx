@@ -15,7 +15,7 @@ const MyBooking = () => {
   // TODO: Payment is Loading.just fun mode in running.
   const handlePayment = (bookingData) => {
     Swal.fire({
-      title: "Choose The Payment Gateway 🤣just fun!🤣 ",
+      title: "Choose The Payment Gateway ",
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: "Bkash",

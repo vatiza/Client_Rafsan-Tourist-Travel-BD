@@ -30,6 +30,7 @@ const AllEvents = () => {
                     <h1 className="text-white font-bold text-lg">
                       {moment(e?.date).format("LL")}
                     </h1>
+                    <button className="btn btn-outline  mt-7">Book Now</button>
                   </div>
                 </div>
               </div>
