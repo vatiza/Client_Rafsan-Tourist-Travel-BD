@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
 import { MdAdminPanelSettings } from "react-icons/md";
-import { FaUsers } from "react-icons/fa6";
+import { FaTrash, FaUsers } from "react-icons/fa6";
 import toast, { Toaster } from "react-hot-toast";
 
 const AllUsers = () => {
@@ -23,17 +23,25 @@ const AllUsers = () => {
       }
     });
   };
+  const handleDeleteuser = (id) => {
+    axiosSecure.delete(`/users/${id}`).then((res) => {
+      if (res.data.deletedCount > 0) {
+        toast.success("Successfully User Delete!");
+        refetch();
+      }
+    });
+  };
 
   return (
     <div className="overflow-x-auto">
       <table className="table">
-        {/* head */}
         <thead>
           <tr>
             <th>#</th>
             <th>Name</th>
             <th>Email</th>
             <th>isAdmin</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -45,7 +53,7 @@ const AllUsers = () => {
               <td>
                 {u.role === "admin" ? (
                   <>
-                    <MdAdminPanelSettings className="text-2xl text-green-700"/>
+                    <MdAdminPanelSettings className="text-2xl text-green-700" />
                   </>
                 ) : (
                   <button
@@ -55,6 +63,15 @@ const AllUsers = () => {
                     <FaUsers className="text-white text-2xl"></FaUsers>
                   </button>
                 )}
+              </td>
+              <td>
+                <button
+                  className="btn btn-ghost text-red-600"
+                  onClick={() => handleDeleteuser(u._id)}
+                >
+                  {" "}
+                  <FaTrash></FaTrash>
+                </button>
               </td>
             </tr>
           ))}

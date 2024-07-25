@@ -27,8 +27,8 @@ const router = createBrowserRouter([
     element: <Main></Main>,
     children: [
       {
-        path:'/distance',
-        element:<DistanceTable></DistanceTable>
+        path: "/distance",
+        element: <DistanceTable></DistanceTable>,
       },
       {
         path: "/",

@@ -1,15 +1,16 @@
+import moment from "moment";
 import React from "react";
 import { MdOutlineCancel, MdOutlinePerson } from "react-icons/md";
-import { TbCoinTaka } from "react-icons/tb";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../Hook/useAxiosPublic";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
 import useBookData from "../../../Hook/useBookData";
-import moment from "moment";
+import { Player } from "@lottiefiles/react-lottie-player";
+import noDataFound from "../../../assets/svg/noDataFound.json";
 
 const MyBooking = () => {
   const [booking, refetch] = useBookData();
-
+  console.log(booking.length);
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   // TODO: Payment is Loading.just fun mode in running.
@@ -77,70 +78,79 @@ const MyBooking = () => {
       <h1 className="text-center text-2xl font-bold lg:text-3xl my-3">
         My Booking List
       </h1>
+
       <div className="overflow-x-auto">
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr>
-              <th></th>
-              <th>Place Name</th>
-              <th>Price</th>
-              <th>Messages</th>
-              <th>Process</th>
-              <th>Details</th>
-              <th>Cancel</th>
-            </tr>
-          </thead>
-          <tbody>
-            {booking.map((b, index) => (
-              <tr key={b._id}>
-                <th>{index + 1}</th>
-                <td>
-                  {b?.placesName}
-                  <br />
-                  <span className="badge badge-ghost badge-sm ">
-                    {b?.division}
-                  </span>
-                  <br />
-                  <span className="badge badge-ghost badge-sm ">
-                    {moment(b?.date).format("ll")}
-                  </span>
-                </td>
-                <td>
-                  BDT: {b?.totalPrice}
-                  <br />
-                  <span className="flex items-center">
-                    <MdOutlinePerson />
-                    {b?.members}
-                  </span>
-                  <br />
-                </td>
-                <td>{b?.cMessage}</td>
-                <td>
-                  <button
-                    className="btn btn-outline btn-sm btn-warning"
-                    onClick={() => handlePayment(b)}
-                  >
-                    Pay Now
-                  </button>
-                </td>
-                <td>
-                  <button className="btn btn-outline btn-info btn-sm">
-                    Details
-                  </button>
-                </td>
-                <td>
-                  <button
-                    onClick={() => handleRemoveBooking(b?._id)}
-                    className="btn btn-outline btn-sm  btn-error"
-                  >
-                    <MdOutlineCancel />
-                  </button>
-                </td>
+        {booking?.length == 0 ? (
+          <div>
+            <h1 className="text-xl text-center text-red-600">
+              You Haven't Any Booking
+            </h1>
+            <Player src={noDataFound} className="player w-1/3" loop autoplay />
+          </div>
+        ) : (
+          <table className="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Place Name</th>
+                <th>Price</th>
+                <th>Messages</th>
+                <th>Process</th>
+                <th>Details</th>
+                <th>Cancel</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {booking.map((b, index) => (
+                <tr key={b._id}>
+                  <th>{index + 1}</th>
+                  <td>
+                    {b?.placesName}
+                    <br />
+                    <span className="badge badge-ghost badge-sm ">
+                      {b?.division}
+                    </span>
+                    <br />
+                    <span className="badge badge-ghost badge-sm ">
+                      {moment(b?.date).format("ll")}
+                    </span>
+                  </td>
+                  <td>
+                    BDT: {b?.totalPrice}
+                    <br />
+                    <span className="flex items-center">
+                      <MdOutlinePerson />
+                      {b?.members}
+                    </span>
+                    <br />
+                  </td>
+                  <td>{b?.cMessage}</td>
+                  <td>
+                    <button
+                      className="btn btn-outline btn-sm btn-warning"
+                      onClick={() => handlePayment(b)}
+                    >
+                      Pay Now
+                    </button>
+                  </td>
+                  <td>
+                    <button className="btn btn-outline btn-info btn-sm">
+                      Details
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => handleRemoveBooking(b?._id)}
+                      className="btn btn-outline btn-sm  btn-error"
+                    >
+                      <MdOutlineCancel />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );
