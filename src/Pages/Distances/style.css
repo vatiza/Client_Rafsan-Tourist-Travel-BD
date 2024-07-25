@@ -1,0 +1,22 @@
+.distance-table {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .distance-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1em;
+    text-align: left;
+  }
+  
+  .distance-table th, .distance-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+  }
+  
+  .distance-table th {
+    background-color: #f2f2f2;
+  }
+  

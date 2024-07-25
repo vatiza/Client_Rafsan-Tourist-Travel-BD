@@ -19,12 +19,17 @@ import Packages from "../Pages/Packages/Packages";
 import Signup from "../Pages/Signup/Signup";
 import AdminRoute from "./AdminRoute";
 import PrivateRoutes from "./PrivateRoutes";
+import DistanceTable from "../Pages/Distances/Distance";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
     children: [
+      {
+        path:'/distance',
+        element:<DistanceTable></DistanceTable>
+      },
       {
         path: "/",
         element: <Home></Home>,

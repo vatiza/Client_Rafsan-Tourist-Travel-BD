@@ -1,20 +1,21 @@
-import useGallery from "../../Hook/useGallery";
 import moment from "moment/moment";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import SimpleParallax from "simple-parallax-js";
+import Header from "../../Components/Header/Header";
+import useGallery from "../../Hook/useGallery";
+import bgimg from "../../assets/img/img6.png";
 const Gallery = () => {
   const [gallery, refetch, loading] = useGallery();
   const [selectedImage, setSelectedImage] = useState(null);
 
   return (
     <>
-    <Helmet>
+      <Helmet>
         <title>Rafsan Tourist ... || Gallery</title>
       </Helmet>
-      <h1 className="text-center text-2xl lg:text-4xl font-bold mt-5">
-        Gallery
-      </h1>
+      
+      <Header img={bgimg} text={"Gallery"} subText={"Home > Gallery"} />
       <div className="mx-2 md:mx-24 mt-5">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
           {gallery.map((g) => (
@@ -31,6 +32,7 @@ const Gallery = () => {
                     alt="Gallery image"
                   />
                 </SimpleParallax>
+
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <div>
                     <h1 className="text-white font-bold text-lg">

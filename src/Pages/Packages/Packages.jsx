@@ -6,7 +6,6 @@ import PackagesCard from "./PackagesCard";
 
 const Packages = () => {
   const [places] = usePlaceData();
-
   return (
     <div>
       <Helmet>

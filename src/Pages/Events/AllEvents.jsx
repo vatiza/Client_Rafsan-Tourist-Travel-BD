@@ -1,6 +1,8 @@
 import moment from "moment";
 import useEvents from "../../Hook/useEvents";
 import { useState } from "react";
+import Header from "../../Components/Header/Header";
+import bgimg from "../../assets/img/img5.png";
 
 const AllEvents = () => {
   const [events] = useEvents();
@@ -8,9 +10,11 @@ const AllEvents = () => {
 
   return (
     <>
-      <h1 className="text-center font-bold text-2xl lg:text-4xl mt-5">
-        Events
-      </h1>
+      <Header 
+      img={bgimg}
+      text={"Events"}
+      subText={"Home > Events"}>
+      </Header>
       <div className="mx-2 md:mx-24 mt-5">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
           {events.map((e) => (
