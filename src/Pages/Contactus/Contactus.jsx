@@ -268,6 +268,7 @@ const Contactus = () => {
                         <div className="mx-0 mb-1 sm:mb-4">
                           <label className="pb-1 text-xs uppercase tracking-wider"></label>
                           <input
+                            required
                             type="text"
                             id="name"
                             placeholder="Your name"
@@ -278,6 +279,7 @@ const Contactus = () => {
                         <div className="mx-0 mb-1 sm:mb-4">
                           <label className="pb-1 text-xs uppercase tracking-wider"></label>
                           <input
+                            required
                             type="email"
                             placeholder="Your email address"
                             className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
@@ -288,6 +290,7 @@ const Contactus = () => {
                       <div className="mx-0 mb-1 sm:mb-4">
                         <label className="pb-1 text-xs uppercase tracking-wider"></label>
                         <textarea
+                          required
                           name="message"
                           cols="30"
                           rows="5"
