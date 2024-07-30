@@ -1,15 +1,18 @@
 /* eslint-disable react/no-unescaped-entities */
 import emailjs from "@emailjs/browser";
-import React, { useRef } from "react";
-import { Fade, Slide } from "react-awesome-reveal";
+import React, { useRef, useState } from "react";
+import { Slide } from "react-awesome-reveal";
+import { Helmet } from "react-helmet-async";
 import toast, { Toaster } from "react-hot-toast";
 import Header from "../../Components/Header/Header";
 import bgimg from "../../assets/img/img4.png";
-import { Helmet } from "react-helmet-async";
 const Contactus = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const form = useRef();
   const sendEmail = (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    const loadingToastId = toast.loading("Sending message...");
 
     emailjs
       .sendForm(
@@ -22,12 +25,16 @@ const Contactus = () => {
       )
       .then(
         () => {
+          toast.dismiss(loadingToastId);
           console.log("SUCCESS!");
           toast.success("Message Send!");
+          setIsLoading(false);
         },
         (error) => {
+          toast.dismiss(loadingToastId);
           console.log("FAILED...", error.text);
           toast.error("Message Send Fail.");
+          setIsLoading(false);
         }
       );
   };
